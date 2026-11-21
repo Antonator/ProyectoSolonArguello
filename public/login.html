@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acceso del personal · Biblioteca Solón Argüello</title>
+  <link rel="icon" href="/img/favicon.png">
+  <link rel="stylesheet" href="/css/estilos.css">
+</head>
+<body>
+  <main class="login-fondo">
+    <div class="login-caja">
+      <img src="/img/logo.png" alt="Solón Argüello, Biblioteca Pública Central Estatal">
+      <h1>Acceso del personal</h1>
+      <form id="form-login">
+        <div class="campo"><label for="usuario">Usuario</label><input class="input" id="usuario" name="usuario" autocomplete="username" required></div>
+        <div class="campo"><label for="contrasena">Contraseña</label><input class="input" id="contrasena" name="contrasena" type="password" autocomplete="current-password" required></div>
+        <button class="btn btn-primario" type="submit">Entrar</button>
+        <a href="/" style="text-align:center">Volver al catálogo</a>
+      </form>
+    </div>
+  </main>
+  <script type="module">
+    import { gql, guardarSesion } from '/js/api.js';
+    import { aviso } from '/js/ui.js';
+    document.getElementById('form-login').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const boton = e.target.querySelector('button');
+      boton.disabled = true;
+      try {
+        const { login } = await gql(
+          'mutation login($u: String!, $c: String!) { login(usuario: $u, contrasena: $c) { token usuario nombre rol } }',
+          { u: e.target.usuario.value.trim(), c: e.target.contrasena.value }
+        );
+        guardarSesion(login);
+        location.href = new URLSearchParams(location.search).get('volver') || '/admin/libros.html';
+      } catch (err) {
+        aviso(err.message, 'error');
+      } finally {
+        boton.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

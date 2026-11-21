@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inventario de libros · Biblioteca Solón Argüello</title>
+  <link rel="icon" href="/img/favicon.png">
+  <link rel="stylesheet" href="/css/estilos.css">
+</head>
+<body>
+  <div class="panel">
+    <aside class="lateral" id="lateral" aria-label="Menú del personal"></aside>
+    <main class="principal">
+      <div class="cabecera">
+        <div>
+          <button class="btn btn-chico menu-movil" id="abrir-menu" aria-label="Abrir menú">Menú</button>
+          <h1>Inventario de libros</h1>
+          <div class="sub">CRUD de libros, autores y ejemplares · Pantalla de Antony Daniel Ocegueda Ruelas</div>
+        </div>
+        <button class="btn btn-primario" id="nuevo">+ Nuevo libro</button>
+      </div>
+
+      <div class="stats" id="stats">
+        <div class="stat"><div class="etq">Títulos registrados</div><div class="num" data-k="titulos">—</div></div>
+        <div class="stat"><div class="etq">Ejemplares totales</div><div class="num" data-k="ejemplaresTotales">—</div></div>
+        <div class="stat"><div class="etq">Disponibles</div><div class="num" data-k="disponibles">—</div></div>
+        <div class="stat"><div class="etq">En préstamo</div><div class="num" data-k="enPrestamo">—</div></div>
+      </div>
+
+      <div class="filtros">
+        <label class="sr" for="buscar">Buscar</label>
+        <input class="input" id="buscar" type="search" placeholder="Buscar por título, autor o ISBN">
+        <label class="sr" for="f-categoria">Categoría</label>
+        <select class="input" id="f-categoria"><option value="">Todas las categorías</option></select>
+        <label class="sr" for="f-estado">Estado</label>
+        <select class="input" id="f-estado">
+          <option value="">Todos los estados</option>
+          <option value="disponible">Con ejemplares disponibles</option>
+          <option value="agotado">Agotados (todos prestados)</option>
+        </select>
+      </div>
+
+      <div class="tabla-caja">
+        <table>
+          <thead><tr><th>Título</th><th>Categoría</th><th>Sala</th><th class="num">Ejemplares</th><th>Estado</th><th>Acciones</th></tr></thead>
+          <tbody id="filas"><tr><td colspan="6" class="vacio">Cargando…</td></tr></tbody>
+        </table>
+      </div>
+      <div class="paginacion" id="paginacion"></div>
+    </main>
+  </div>
+  <script type="module" src="/js/libros.js"></script>
+</body>
+</html>

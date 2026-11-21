@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Préstamos y reservas · Biblioteca Solón Argüello</title>
+  <link rel="icon" href="/img/favicon.png">
+  <link rel="stylesheet" href="/css/estilos.css">
+</head>
+<body>
+  <div class="panel">
+    <aside class="lateral" id="lateral" aria-label="Menú del personal"></aside>
+    <main class="principal">
+      <div class="cabecera">
+        <div>
+          <button class="btn btn-chico menu-movil" id="abrir-menu" aria-label="Abrir menú">Menú</button>
+          <h1>Préstamos y reservas</h1>
+          <div class="sub">CRUD de préstamos, devoluciones y apartados · Pantalla de Pablo Iván Calleros Cortés</div>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><div class="etq">Préstamos hoy</div><div class="num" data-k="prestamosHoy">—</div></div>
+        <div class="stat"><div class="etq">Devoluciones hoy</div><div class="num" data-k="devolucionesHoy">—</div></div>
+        <div class="stat"><div class="etq">En préstamo</div><div class="num" data-k="activos">—</div></div>
+        <div class="stat alerta"><div class="etq">Vencidos</div><div class="num" data-k="vencidos">—</div></div>
+      </div>
+
+      <section class="tarjeta" style="margin-bottom:18px" aria-labelledby="t-nuevo">
+        <h2 id="t-nuevo" style="font-size:19px;margin-bottom:12px">Registrar préstamo</h2>
+        <div class="dos-col">
+          <div class="campo">
+            <label for="buscar-lector">Lector (credencial o nombre)</label>
+            <div class="selector">
+              <input class="input" id="buscar-lector" placeholder="BPSA-2026-… o nombre" autocomplete="off">
+              <div class="opciones oculto" id="op-lector"></div>
+            </div>
+            <div id="lector-elegido"></div>
+          </div>
+          <div class="campo">
+            <label for="buscar-libro">Libro (título, autor o ISBN)</label>
+            <div class="selector">
+              <input class="input" id="buscar-libro" placeholder="Pedro Páramo…" autocomplete="off">
+              <div class="opciones oculto" id="op-libro"></div>
+            </div>
+            <div id="libro-elegido"></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
+          <button class="btn btn-primario" id="registrar" disabled>Registrar préstamo (7 días)</button>
+          <button class="btn" id="reservar" disabled>Reservar (apartar cuando regrese)</button>
+        </div>
+      </section>
+
+      <div class="pestanas" role="tablist">
+        <button class="pestana" role="tab" aria-selected="true" data-s="Abiertos">Abiertos</button>
+        <button class="pestana" role="tab" aria-selected="false" data-s="Vencido">Vencidos</button>
+        <button class="pestana" role="tab" aria-selected="false" data-s="Devuelto">Devueltos</button>
+        <button class="pestana" role="tab" aria-selected="false" data-s="">Todos</button>
+        <button class="pestana" role="tab" aria-selected="false" data-s="reservas">Reservas</button>
+      </div>
+
+      <div id="vista-prestamos">
+        <div class="filtros">
+          <label class="sr" for="buscar">Buscar</label>
+          <input class="input" id="buscar" type="search" placeholder="Buscar por libro, lector o código de ejemplar">
+        </div>
+        <div class="tabla-caja">
+          <table>
+            <thead><tr><th>Libro</th><th>Lector</th><th>Prestado</th><th>Vence</th><th>Situación</th><th>Acciones</th></tr></thead>
+            <tbody id="filas"><tr><td colspan="6" class="vacio">Cargando…</td></tr></tbody>
+          </table>
+        </div>
+        <div class="paginacion" id="paginacion"></div>
+      </div>
+
+      <div id="vista-reservas" class="oculto">
+        <h3 style="margin:4px 0 10px;font-size:17px">Listas para recoger</h3>
+        <div class="tabla-caja" style="margin-bottom:18px">
+          <table>
+            <thead><tr><th>Libro</th><th>Lector</th><th>Recoger antes de</th><th>Acciones</th></tr></thead>
+            <tbody id="filas-listas"></tbody>
+          </table>
+        </div>
+        <h3 style="margin:4px 0 10px;font-size:17px">Cola de espera</h3>
+        <div class="tabla-caja">
+          <table>
+            <thead><tr><th>Libro</th><th class="num">Turno</th><th>Lector</th><th>Solicitó</th><th class="num">Días esperando</th><th>Acciones</th></tr></thead>
+            <tbody id="filas-cola"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script type="module" src="/js/prestamos.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Consultas y reportes · Biblioteca Solón Argüello</title>
+  <link rel="icon" href="/img/favicon.png">
+  <link rel="stylesheet" href="/css/estilos.css">
+</head>
+<body>
+  <div class="panel">
+    <aside class="lateral" id="lateral" aria-label="Menú del personal"></aside>
+    <main class="principal">
+      <div class="cabecera">
+        <div>
+          <button class="btn btn-chico menu-movil" id="abrir-menu" aria-label="Abrir menú">Menú</button>
+          <h1>Consultas y reportes</h1>
+          <div class="sub">30 consultas complejas sobre MongoDB (10 por integrante), servidas por GraphQL</div>
+        </div>
+      </div>
+      <div class="consultas-grid">
+        <nav class="lista-consultas" id="lista" aria-label="Consultas"></nav>
+        <section class="tarjeta" id="detalle" aria-live="polite"></section>
+      </div>
+    </main>
+  </div>
+  <script type="module" src="/js/consultas.js"></script>
+</body>
+</html>

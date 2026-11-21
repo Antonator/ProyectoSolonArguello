@@ -1,0 +1,31 @@
+{
+  "name": "biblioteca-solon-arguello",
+  "version": "1.0.0",
+  "description": "Sistema web de la Biblioteca Pública Central Estatal Solón Argüello (Tepic, Nayarit): MongoDB + Express + Apollo GraphQL + JavaScript",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node seed/seed.js --reiniciar",
+    "probar:consultas": "node scripts/probar-consultas.js"
+  },
+  "author": "Ocegueda Ruelas Antony Daniel, Ibarra García Víctor Alberto, Calleros Cortés Pablo Iván",
+  "license": "MIT",
+  "dependencies": {
+    "@apollo/server": "^5.5.2",
+    "@as-integrations/express5": "^1.1.2",
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^5.3.0",
+    "graphql": "^16.15.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.12.3"
+  },
+  "devDependencies": {
+    "mingo": "^7.2.7"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  }
+}
